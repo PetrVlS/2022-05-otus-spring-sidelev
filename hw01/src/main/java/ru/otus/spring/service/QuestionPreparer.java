@@ -3,9 +3,10 @@ package ru.otus.spring.service;
 import ru.otus.spring.dao.QuestionDao;
 import ru.otus.spring.domain.Answer;
 import ru.otus.spring.domain.Question;
+import ru.otus.spring.exception.MyIOException;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,11 @@ import java.util.stream.Collectors;
 
 
 public class QuestionPreparer {
-    private final BufferedReader reader;
     private final QuestionDao questionDao;
+    private final String resourceName;
 
     public QuestionPreparer(QuestionDao questionDao, String resourceName) {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(resourceName);
-        this.reader = new BufferedReader(new InputStreamReader(inputStream));
+        this.resourceName = resourceName;
         this.questionDao = questionDao;
     }
 
@@ -28,7 +28,11 @@ public class QuestionPreparer {
     }
 
     private List<String> getAllLinesFromFile() {
-        return reader.lines().collect(Collectors.toList());
+        try (var reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resourceName)))) {
+            return reader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new MyIOException("Error in reading data");
+        }
     }
 
     private Question convertStringToQuestion(String line) {

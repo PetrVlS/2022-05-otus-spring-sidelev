@@ -2,11 +2,11 @@ package ru.otus.spring.domain;
 
 public class Answer {
     private final String text;
-    private final boolean isTrueAnswer;
+    private final boolean correct;
 
-    public Answer(String text, String isTrueAnswer) {
+    public Answer(String text, String correct) {
         this.text = text;
-        this.isTrueAnswer = Boolean.parseBoolean(isTrueAnswer);
+        this.correct = Boolean.parseBoolean(correct);
     }
 
     public String getText() {

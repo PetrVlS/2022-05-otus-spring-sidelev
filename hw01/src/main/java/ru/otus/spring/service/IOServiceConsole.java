@@ -17,7 +17,7 @@ public class IOServiceConsole implements IOService {
     }
 
     @Override
-    public String readLn() throws IOException {
+    public String readLine() throws IOException {
         return in.readLine();
     }
 }

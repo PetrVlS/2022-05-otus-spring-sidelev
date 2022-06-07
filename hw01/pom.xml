@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>ru.otus</groupId>
-        <artifactId>SpringProject</artifactId>
+        <artifactId>spring-project</artifactId>
         <version>1.0</version>
     </parent>
 
@@ -20,7 +20,5 @@
             <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
-
-    <packaging>jar</packaging>
 
 </project>
