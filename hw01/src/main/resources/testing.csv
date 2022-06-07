@@ -1,0 +1,5 @@
+What file is a class source file compiled into in Java?; .java; false; .exe; false; .com; false; .class; true;
+How many primitive types are there in Java?; 10; false; 5; false; 3; false; 8; true;
+Which of the following is not a cycle?; while; false; for; false; do while; false; switch; true;
+What method starts the thread?; go; false; run; false; launch; false; start; true;
+What is not an architectural principle?; KISS; false; YAGNI; false; DRY; false; WET; true;
