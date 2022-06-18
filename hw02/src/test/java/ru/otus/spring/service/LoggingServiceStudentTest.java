@@ -32,10 +32,10 @@ public class LoggingServiceStudentTest {
 
         var student = new Student("Ivan", "Ivanov");
 
-        inOrder.verify(ioService, times(1)).out("Input first name");
-        inOrder.verify(ioService, times(1)).readLine();
-        inOrder.verify(ioService, times(1)).out("Input last name");
-        inOrder.verify(ioService, times(1)).readLine();
-        inOrder.verify(studentDao, times(1)).saveStudent(student);
+        inOrder.verify(ioService).out("Input first name");
+        inOrder.verify(ioService).readLine();
+        inOrder.verify(ioService).out("Input last name");
+        inOrder.verify(ioService).readLine();
+        inOrder.verify(studentDao).saveStudent(student);
     }
 }

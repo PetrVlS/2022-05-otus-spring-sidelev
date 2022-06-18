@@ -4,9 +4,9 @@ public class Answer {
     private final String text;
     private final boolean correct;
 
-    public Answer(String text, String correct) {
+    public Answer(String text, boolean correct) {
         this.text = text;
-        this.correct = Boolean.parseBoolean(correct);
+        this.correct = correct;
     }
 
     public String getText() {

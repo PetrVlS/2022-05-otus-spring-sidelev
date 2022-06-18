@@ -31,17 +31,17 @@ public class QuestionDao {
         try (var reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(resourceName)))) {
             return reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
-            throw new MyIOException("Error in reading data from file");
+            throw new MyIOException("Error in reading data from file", e);
         }
     }
 
     private Question convertStringToQuestion(String line) {
         String[] questionsWithAnswers = line.split(";");
         var answers = new ArrayList<Answer>();
-        answers.add(new Answer(questionsWithAnswers[1], questionsWithAnswers[2]));
-        answers.add(new Answer(questionsWithAnswers[3], questionsWithAnswers[4]));
-        answers.add(new Answer(questionsWithAnswers[5], questionsWithAnswers[6]));
-        answers.add(new Answer(questionsWithAnswers[7], questionsWithAnswers[8]));
+        answers.add(new Answer(questionsWithAnswers[1], Boolean.parseBoolean(questionsWithAnswers[2])));
+        answers.add(new Answer(questionsWithAnswers[3], Boolean.parseBoolean(questionsWithAnswers[4])));
+        answers.add(new Answer(questionsWithAnswers[5], Boolean.parseBoolean(questionsWithAnswers[6])));
+        answers.add(new Answer(questionsWithAnswers[7], Boolean.parseBoolean(questionsWithAnswers[8])));
         return new Question(questionsWithAnswers[0], answers);
     }
 }

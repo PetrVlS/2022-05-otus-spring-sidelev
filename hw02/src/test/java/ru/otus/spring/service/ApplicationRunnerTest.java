@@ -29,8 +29,8 @@ public class ApplicationRunnerTest {
 
         applicationRunner.start();
 
-        inOrder.verify(loggingService, times(1)).logging();
-        inOrder.verify(testProcessor, times(1)).runTest();
-        inOrder.verify(resultService, times(1)).showResult();
+        inOrder.verify(loggingService).logging();
+        inOrder.verify(testProcessor).runTest();
+        inOrder.verify(resultService).showResult();
     }
 }

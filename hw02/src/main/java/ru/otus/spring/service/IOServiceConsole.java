@@ -25,7 +25,7 @@ public class IOServiceConsole implements IOService {
         try {
             return in.readLine();
         } catch (IOException e) {
-            throw new MyIOException("IOException");
+            throw new MyIOException("IOException", e);
         }
     }
 }

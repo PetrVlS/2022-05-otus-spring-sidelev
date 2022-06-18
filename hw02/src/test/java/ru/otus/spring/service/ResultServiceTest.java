@@ -24,8 +24,6 @@ public class ResultServiceTest {
     private IOService ioService;
 
     private static final int SCORE_PASSING = 4;
-    private static final String TEST_PASSED_TEMPLATE = "Student %s %s test passed";
-    private static final String TEST_FAILED_TEMPLATE = "Student %s %s test failed";
 
     @DisplayName("корректно проверяет ответы")
     @Test
@@ -37,11 +35,11 @@ public class ResultServiceTest {
         var resultService = new ResultService(studentDao, ioService, SCORE_PASSING);
         assertThat(numberOfCorrectAnswersField.get(resultService)).isEqualTo(0);
 
-        var answer = new Answer("TrueAnswer", "true");
+        var answer = new Answer("TrueAnswer", true);
         resultService.checkAnswer(answer);
         assertThat(numberOfCorrectAnswersField.get(resultService)).isEqualTo(1);
 
-        answer = new Answer("TrueAnswer", "false");
+        answer = new Answer("TrueAnswer", false);
         resultService.checkAnswer(answer);
         assertThat(numberOfCorrectAnswersField.get(resultService)).isEqualTo(1);
     }
@@ -55,14 +53,14 @@ public class ResultServiceTest {
         var student = new Student("Ivan", "Ivanov");
         when(studentDao.getStudent()).thenReturn(student);
 
-        var correctAnswer = new Answer("CorrectAnswer", "true");
+        var correctAnswer = new Answer("CorrectAnswer", true);
         for (int i = 0; i < SCORE_PASSING; i++) {
             resultService.checkAnswer(correctAnswer);
             resultService.showResult();
         }
 
-        inOrder.verify(studentDao, times(1)).getStudent();
-        inOrder.verify(ioService, times(SCORE_PASSING - 1)).out(String.format(TEST_FAILED_TEMPLATE, student.getFirstName(), student.getLastName()));
-        inOrder.verify(ioService, times(1)).out(String.format(TEST_PASSED_TEMPLATE, student.getFirstName(), student.getLastName()));
+        inOrder.verify(studentDao).getStudent();
+        inOrder.verify(ioService, times(SCORE_PASSING)).out(contains("Ivan Ivanov"));
+
     }
 }
