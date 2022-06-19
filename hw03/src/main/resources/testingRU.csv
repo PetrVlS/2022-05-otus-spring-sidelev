@@ -1,0 +1,5 @@
+Какой файл представляет собой исходный файл класса, скомпилированный в Java?;.java;false;.exe;false;.com;false;.class;true;
+Сколько примитивных типов существует в Java?;10;false;5;false;3;false;8;true;
+Что из перечисленного не является циклом?;while;false;for;false;do while;false;switch;true;
+Какой метод запускает поток?;go;false;run;false;launch;false;start;true;
+Что не является архитектурным принципом?;KISS;false;YAGNI;false;DRY;false;WET;true;
