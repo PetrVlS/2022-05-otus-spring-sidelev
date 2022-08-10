@@ -11,7 +11,6 @@ import java.util.Locale;
 public class LoggingServiceStudent implements LoggingService {
     private final IOService ioService;
     private final StudentDao studentDao;
-
     private final MessageSource messageSource;
 
     public LoggingServiceStudent(IOService ioService, StudentDao studentDao, MessageSource messageSource) {

@@ -1,19 +1,11 @@
 package ru.otus.spring.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Answer {
-    private final String text;
-    private final boolean correct;
-
-    public Answer(String text, boolean correct) {
-        this.text = text;
-        this.correct = correct;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public boolean isCorrect() {
-        return correct;
-    }
+    private String text;
+    private boolean correct;
 }

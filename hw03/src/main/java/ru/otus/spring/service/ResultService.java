@@ -14,7 +14,6 @@ public class ResultService {
     private final IOService ioService;
     private final int scorePassing;
     private int numberOfCorrectAnswers;
-
     private final MessageSource messageSource;
 
     public ResultService(StudentDao studentDao, IOService ioService, @Value("${score.passing}") int scorePassing, MessageSource messageSource) {
@@ -24,7 +23,6 @@ public class ResultService {
         this.messageSource = messageSource;
         numberOfCorrectAnswers = 0;
     }
-
 
     public void showResult() {
         var student = studentDao.getStudent();

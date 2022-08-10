@@ -6,13 +6,11 @@ import ru.otus.spring.dao.QuestionDao;
 
 import java.util.Locale;
 
-
 @Service
 public class TestProcessor {
     private final IOService ioService;
     private final ResultService resultService;
     private final QuestionDao questionDao;
-
     private final MessageSource messageSource;
 
     public TestProcessor(IOService ioService, ResultService resultService, QuestionDao questionDao, MessageSource messageSource) {
@@ -30,8 +28,19 @@ public class TestProcessor {
             for (int j = 0; j < answers.size(); j++) {
                 print(messageSource.getMessage("answer.string.template", null, Locale.getDefault()), j + 1, answers.get(j).getText());
             }
-            print(messageSource.getMessage("enter.answer.number", null, Locale.getDefault()));
-            var answerNumber = getAnswerNumber();
+
+            int answerNumber;
+            try {
+                print(messageSource.getMessage("enter.answer.number", null, Locale.getDefault()));
+                answerNumber = getAnswerNumber();
+                if (answerNumber > answers.size() || answerNumber < 1) {
+                    throw new RuntimeException();
+                }
+            } catch (RuntimeException e) {
+                print(messageSource.getMessage("invalid.input.data", null, Locale.getDefault()));
+                print(messageSource.getMessage("enter.answer.number", null, Locale.getDefault()));
+                answerNumber = getAnswerNumber();
+            }
             resultService.checkAnswer(answers.get(answerNumber - 1));
         }
     }
@@ -43,6 +52,4 @@ public class TestProcessor {
     private int getAnswerNumber() {
         return Integer.parseInt(ioService.readLine());
     }
-
-
 }

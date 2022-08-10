@@ -10,8 +10,6 @@ import ru.otus.spring.dao.StudentDao;
 import ru.otus.spring.domain.Answer;
 import ru.otus.spring.domain.Student;
 
-import java.util.Locale;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -57,7 +55,7 @@ public class ResultServiceTest {
 
         var student = new Student("Ivan", "Ivanov");
         when(studentDao.getStudent()).thenReturn(student);
-        when(messageSource.getMessage(any(), any(),any())).thenReturn("%s %s");
+        when(messageSource.getMessage(any(), any(), any())).thenReturn("%s %s");
 
         var correctAnswer = new Answer("CorrectAnswer", true);
         for (int i = 0; i < SCORE_PASSING; i++) {
@@ -67,6 +65,5 @@ public class ResultServiceTest {
 
         inOrder.verify(studentDao).getStudent();
         inOrder.verify(ioService, times(SCORE_PASSING)).out(contains("Ivan Ivanov"));
-
     }
 }
